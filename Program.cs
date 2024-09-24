@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -23,11 +24,12 @@ namespace TransacaoFinanceira
                 new Transacao { correlation_id = 8, datetime = "09/09/2023 14:19:01", conta_origem = 573659065, conta_destino = 675869708, VALOR = 150 },
             ];
             executarTransacaoFinanceira executor = new executarTransacaoFinanceira();
-            Parallel.ForEach(TRANSACOES, item =>
+            foreach (var item in TRANSACOES.OrderBy(x => x.correlation_id))
             {
-                executor.transferir(item.correlation_id, item.conta_origem, item.conta_destino, item.VALOR);
-            });
-
+         
+                    executor.transferir(item.correlation_id, item.conta_origem, item.conta_destino, item.VALOR);
+                
+            };
         }
     }
 
@@ -46,6 +48,9 @@ namespace TransacaoFinanceira
                 contas_saldo conta_saldo_destino = getSaldo<contas_saldo>(conta_destino);
                 conta_saldo_origem.saldo -= valor;
                 conta_saldo_destino.saldo += valor;
+                atualizar(conta_saldo_origem);
+                atualizar(conta_saldo_destino);
+
                 Console.WriteLine("Transacao numero {0} foi efetivada com sucesso! Novos saldos: Conta Origem:{1} | Conta Destino: {2}", correlation_id, conta_saldo_origem.saldo, conta_saldo_destino.saldo);
             }
         }
