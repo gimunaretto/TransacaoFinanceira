@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TransacaoFinanceira.Application.DTOs;
 using TransacaoFinanceira.Application.Interfaces;
 using TransacaoFinanceira.Data.Repositories;
 using TransacaoFinanceira.Domain.Interfaces;
 using TransacaoFinanceira.Domain.Services;
 
-
-
 namespace TransacaoFinanceira
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             IContaRepository contaRepository = new ContaRepository();
@@ -36,5 +31,4 @@ namespace TransacaoFinanceira
             }
         }
     }
-
 }

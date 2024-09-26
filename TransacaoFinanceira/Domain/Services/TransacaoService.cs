@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TransacaoFinanceira.Application.DTOs;
 using TransacaoFinanceira.Application.Interfaces;
 using TransacaoFinanceira.Domain.Entities;
@@ -21,7 +17,6 @@ namespace TransacaoFinanceira.Domain.Services
 
         private static (bool, string) ValidarTransacao(Transacao transacao, Conta contaOrigem, Conta contaDestino)
         {
-
             if (contaOrigem == null || contaDestino == null)
             {
                 string tipoConta = (contaOrigem == null ? "origem" : "destino");
@@ -65,7 +60,6 @@ namespace TransacaoFinanceira.Domain.Services
 
             Console.WriteLine($"Transação nº {transacao.CorrelationId} foi efetivada com sucesso! " +
                               $"Novos saldos: Conta Origem: {contaOrigem.Saldo} | Conta Destino: {contaDestino.Saldo}");
-
         }
 
         private Transacao MapearTransacaoDTO(TransacaoDTO transacaoDTO)
